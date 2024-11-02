@@ -48,7 +48,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-4">
         <h2 className="mb-2 mt-4">Featured Projects</h2>
         {allProjects.map((project) => (
           <article
