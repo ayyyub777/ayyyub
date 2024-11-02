@@ -48,7 +48,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col gap-6">
         <h2 className="mb-2 mt-4">Featured Projects</h2>
         {allProjects.map((project) => (
           <article
@@ -68,7 +68,7 @@ export default function Home() {
               <h3 className="mt-2 mb-1">
                 <Link
                   href={project.slug}
-                  className="no-underline hover:underline"
+                  className="no-underline hover:underline font-semibold"
                 >
                   {project.title}
                 </Link>

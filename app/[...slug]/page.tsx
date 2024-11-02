@@ -50,8 +50,7 @@ export default async function PagePage({ params }: PageProps) {
 
   return (
     <article className="prose dark:prose-invert">
-      <h1 className="mb-2">{page.title}</h1>
-      <br />
+      <h1>{page.title}</h1>
       <Mdx code={page.body.code} />
     </article>
   );
