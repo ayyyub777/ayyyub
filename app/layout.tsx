@@ -27,7 +27,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="max-w-2xl mx-auto py-10 px-4">
             <header className="mb-12">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between h-7">
                 <nav className="mr-auto text-sm font-medium space-x-6">
                   <Link href="/">Home</Link>
                   <Link href="/about">About</Link>

@@ -1,4 +1,4 @@
-import { allPosts, allProjects } from "@/.contentlayer/generated";
+import { allProjects } from "@/.contentlayer/generated";
 
 import { Icons } from "@/components/icons";
 import Image from "next/image";
@@ -27,7 +27,7 @@ export default function Home() {
       </section>
       <hr className="m-0 sm:hidden" />
       <section>
-        <h2 className="mb-4 mt-4">My Skillset</h2>
+        <h2 className="my-4">My Skillset</h2>
         <p className="mb-3">
           In the course of my software development journey, I&apos;ve acquired a
           robust set of technical skills. These include
@@ -48,80 +48,49 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="flex flex-col gap-8">
+      <section className="flex flex-col gap-4">
         <h2 className="mb-2 mt-4">Featured Projects</h2>
-        {allProjects
-          .sort((a, b) => a.order - b.order)
-          .map((project) => (
-            <article
-              key={project._id}
-              className="flex flex-col gap-3 sm:flex-row sm:gap-6"
-            >
-              <div className="shrink-0">
-                <Image
-                  src={project.thumbnail}
-                  alt={`Screenshot of ${project.title} - ${project.description}`}
-                  height={240}
-                  width={320}
-                  className="object-cover h-auto w-full m-0 sm:h-60 sm:w-80"
-                />
-              </div>
+        {allProjects.map((project) => (
+          <article
+            key={project._id}
+            className="flex flex-col gap-3 sm:flex-row sm:gap-6"
+          >
+            <div className="shrink-0">
+              <Image
+                src={project.thumbnail}
+                alt={`Screenshot of ${project.title} - ${project.description}`}
+                height={208}
+                width={320}
+                className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
+              />
+            </div>
+            <div>
+              <h3 className="mt-2 mb-1">
+                <Link
+                  href={project.slug}
+                  className="no-underline hover:underline"
+                >
+                  {project.title}
+                </Link>
+              </h3>
+
+              <p className="mb-3 text-sm opacity-90">{project.description}</p>
               <div>
-                <h3 className="mb-1 mt-2">{project.title}</h3>
-                <p className="mb-3 text-sm opacity-90">{project.description}</p>
-                <div>
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-block bg-neutral-100 text-neutral-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-neutral-700 dark:text-neutral-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex mt-3 gap-5">
-                  {project?.demo && (
-                    <Link
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex gap-2 items-center opacity-80 hover:opacity-100"
-                    >
-                      <Icons.demo className="h-4 w-4" />
-                      Demo
-                    </Link>
-                  )}
-                  {project?.source_code && (
-                    <Link
-                      href={project.source_code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex gap-2 items-center opacity-80 hover:opacity-100"
-                    >
-                      <Icons.code className="h-4 w-4" />
-                      Source Code
-                    </Link>
-                  )}
-                </div>
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-block bg-neutral-100 text-neutral-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-neutral-700 dark:text-neutral-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
-            </article>
-          ))}
+            </div>
+          </article>
+        ))}
       </section>
-      {allPosts.length > 0 && (
-        <section>
-          <h2>My Thoughts</h2>
-          {allPosts.map((post) => (
-            <article key={post._id} className="mb-4">
-              <Link href={post.slug} className="no-underline">
-                <h3 className="m-0">{post.title}</h3>
-              </Link>
-              <p className="m-0 opacity-90">{post.description}</p>
-            </article>
-          ))}
-        </section>
-      )}
       <section>
-        <h2 className="mb-4">Say, Hello!</h2>
+        <h2 className="my-4">Say, Hello!</h2>
         <div className="flex flex-col sm:flex-row sm:flex-wrap sm:gap-x-3">
           <div className="flex gap-3">
             <p className="my-1">Email:</p>
