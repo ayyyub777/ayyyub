@@ -1,6 +1,6 @@
 ---
 title: Restful API solution
-description: A SaaS tool that integrates with Google Sheets, simplifying data management and including built-in billing so businesses can manage their subscriptions with ease.
+description: A SaaS tool that integrates with Google Sheets to automate data management and API generation, with built-in billing for subscription handling.
 thumbnail: "/projects/sheetlayer/sheetlayer-logo-min.jpg"
 tech:
   - React
@@ -20,23 +20,159 @@ SheetLayer is a versatile tool that allows users to create APIs directly from sp
 
 ### 1. Secure Authentication
 
-SheetLayer employs secure magic link authentication, allowing users to log in effortlessly and safely. This method enhances user experience by eliminating the need for passwords while maintaining high security standards.
+Simplifies user access by enabling secure, password-free login through unique, time-sensitive links sent to users' email. This feature enhances user experience and security, making it easy for teams to quickly start building APIs from their spreadsheet data.
 ![Magic Link Authentication](https://www.ayyyub.com/projects/sheetlayer/auth-min.jpg)
 
 ### 2. Google Sheets Integration
 
-Users can connect their Google Sheets accounts directly to SheetLayer. This integration enables seamless data import and synchronization, allowing users to leverage their existing spreadsheets as dynamic data sources for API creation.
-![Google Sheets Integration](https://www.ayyyub.com/projects/sheetlayer/sheets-integration-min.jpg)
+Seamlessly connects with Google Sheets to allow users to turn their existing spreadsheet data into accessible APIs in real time. This integration makes it effortles
+s to manage and update datasets without leaving the familiar Google Sheets interface.![Google Sheets Integration](https://www.ayyyub.com/projects/sheetlayer/sheets-integration-min.jpg)
 
 ### 3. API Management
 
-SheetLayer provides API management features, allowing users to monitor, configure, and control their APIs easily.
+Provides tools to monitor, control, and secure all APIs created with SheetLayer. Users can view API usage statistics, set access controls, and make adjustments, enabling effective scaling and management of data-driven applications.
 ![API Management](https://www.ayyyub.com/projects/sheetlayer/main-feature-min.jpg)
 
 ### 4. Billing Management
 
-Built-in billing features allow users to manage subscription plans and payment processes directly within the platform. This ensures a smooth financial operation, enabling users to focus on developing their applications without worrying about payment logistics.
+A user-friendly interface for managing subscription plans, viewing invoices, and tracking payment history. This feature helps users easily stay on top of their account, ensuring uninterrupted access to SheetLayer’s full suite of tools.
 ![Billing Management](https://www.ayyyub.com/projects/sheetlayer/billing-feature-min.jpg)
+
+## Database Schema
+
+The SheetLayer schema supports a SaaS tool that integrates with Google Sheets to manage data and APIs. Its main components include:
+![Database schema](http://localhost:3000/projects/sheetlayer/sheetlayer-schema.svg)
+
+- **User**: Central to the application, this model manages user accounts with essential fields such as `email`, `picture`, and timestamps for account lifecycle management. The relationship with `Session` ensures secure session handling and authentication.
+
+- **Api**: Represents the APIs generated from user spreadsheets, including attributes like `title`, `spreadsheet`, and timestamps. This model facilitates comprehensive management of API metadata within each user's workspace.
+
+- **Workspace**: Organizes user projects by grouping related APIs under a unique identifier linked to a user. This structure fosters collaboration and efficient data management.
+
+- **Subscription**: Handles billing details and subscription plans, detailing `status`, renewal dates, and pricing structures. This model allows users to seamlessly track their subscription status and billing information.
+
+- **Plan**: Defines various subscription options available to users, outlining `productName`, `price`, and usage-based billing preferences. This model supports flexible pricing strategies tailored to user requirements.
+
+## Technologies Used
+
+- **Programming Languages**:
+
+  - **TypeScript**: A superset of JavaScript that adds static types for improved error detection and code quality.
+
+- **Frameworks and Libraries**:
+
+  - **Next.js**: Used for server-side rendering and routing.
+  - **React**: For building interactive user interfaces.
+  - **Tailwind CSS**: For styling and maintaining design consistency.
+
+- **Database and ORM**:
+
+  - **Prisma**: Utilized for database access and migrations.
+
+- **Email Services**:
+
+  - **Nodemailer**: For sending emails easily.
+
+- **State Management**:
+
+  - **Zustand**: For managing application state.
+
+- **Form Management**:
+
+  - **React Hook Form**: For efficient form management and validation.
+
+- **Payment Processing**:
+
+  - **LemonSqueezy**: Integration for handling payments and subscriptions.
+
+- **Utilities**:
+
+  - **Google APIs**: For integrating with Google services, including authentication.
+  - **Date-fns**: For date manipulation.
+
+- **Caching and Session Management**:
+
+  - **Redis**: An in-memory data structure store, used for caching and session management.
+
+- **Development Tools**:
+  - **ESLint**: A tool for identifying and fixing problems in JavaScript code.
+  - **Prettier**: A code formatter to maintain a consistent code style.
+
+## Challenges Faced
+
+### Challenge
+
+**Security Against Brute Force Attacks**: To prevent brute force attacks when generating login links and sending them via email, a Redis rate limiter was required to control the number of requests from a user. This helps ensure that no user can generate excessive login links within a short timeframe.
+
+### Solution
+
+Implement a Redis-based rate limiter that restricts the number of login link requests a user can make within a specified time window. By utilizing Redis, we can efficiently track the number of requests and enforce limits to enhance security.
+
+### Code Snippet
+
+Here’s the implementation of the Redis connection and rate limiter:
+
+```typescript
+import { Redis } from "ioredis";
+
+// Configuration Constants
+const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
+const RATE_LIMIT_WINDOW = 60 * 60; // 1 hour in seconds
+const MAX_REQUESTS = 3; // Max requests per window
+
+// Create Redis instance
+const createRedisInstance = () => {
+  const { hostname, port, password } = new URL(REDIS_URL);
+
+  const redis = new Redis({
+    host: hostname,
+    port: parseInt(port),
+    password: password || undefined, // Use undefined if no password is set
+    tls: REDIS_URL.startsWith("rediss://") ? {} : undefined, // Enable TLS for secure connections
+  });
+
+  redis.on("error", (error) => {
+    console.error("Redis connection error:", error);
+  });
+
+  redis.on("connect", () => {
+    console.log("Successfully connected to Redis");
+  });
+
+  return redis;
+};
+
+const redis = createRedisInstance();
+
+/**
+ * Rate limiter function
+ * @param {string} key - Unique key for the user (e.g., user ID or IP address)
+ * @returns {Promise<boolean>} - True if the request is allowed, false if it exceeds the limit
+ */
+export const rateLimiter = async (key) => {
+  try {
+    const currentCount = await redis.incr(key);
+
+    // Set expiration for the first request
+    if (currentCount === 1) {
+      await redis.expire(key, RATE_LIMIT_WINDOW);
+    }
+
+    // Check if the request exceeds the limit
+    if (currentCount > MAX_REQUESTS) {
+      console.warn(`Rate limit exceeded for key: ${key}`);
+      return false; // Exceeded limit
+    }
+
+    return true; // Request is allowed
+  } catch (error) {
+    console.error("Error in rateLimiter:", error);
+    return false; // Error occurred, deny request
+  }
+};
+
+export default redis;
+```
 
 ### Links and Resources
 

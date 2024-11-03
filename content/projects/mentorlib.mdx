@@ -1,6 +1,6 @@
 ---
 title: Expert Review Marketplace
-description: A marketplace platform that makes it easy for clients to connect with experts, with built-in appointment booking to save time and keep everything organized.
+description: A marketplace platform that connects clients with industry experts, featuring integrated appointment booking for efficient organization.
 thumbnail: "/projects/mentorlib/mentorlib-logo-min.jpg"
 tech:
   - TypeScript
@@ -18,24 +18,137 @@ Mentorlib is an innovative platform designed to connect entrepreneurs with indus
 
 ### 1. Onboarding with Role Selection
 
-Users can register as either a client or an expert, allowing them to set up their accounts based on their roles. This tailored onboarding process ensures that each user has access to the features and functionalities relevant to their needs.
-
+A tailored onboarding experience that allows new users to select their role as either an entrepreneur or an expert. This personalized start ensures each user is guided to the features and services most relevant to their needs, maximizing the value of Mentorlib from the first login.
 ![Onboarding](https://www.ayyyub.com/projects/mentorlib/onboarding-feature-min.jpg)
 
 ### 2. Browsing Experts and Services
 
-The platform provides a user-friendly interface for browsing through a diverse range of experts across various fields. Users can filter experts based on their expertise, reviews, and availability, making it easy to find the right fit for their needs.
+Enables users to explore a curated directory of experts and available services, each with detailed profiles and service descriptions. This feature allows entrepreneurs to find the perfect match for their specific business needs, from pitch deck reviews to marketing strategy consultations.
 ![Browsing](https://www.ayyyub.com/projects/mentorlib/browsing-feature-min.jpg)
 
 ### 3. Availability Management
 
-Experts can manage their availability through an integrated system, allowing them to set specific times for consultations and reviews. This feature ensures that users can easily find and book appointments that fit their schedules.
+Provides experts with tools to set their availability, making it easy for entrepreneurs to view open slots and book sessions. This feature streamlines the scheduling process, helping both parties efficiently find convenient times for consultations.
 ![Availability](https://www.ayyyub.com/projects/mentorlib/availability-feature-min.jpg)
 
 ### 4. Appointment Scheduling
 
-Once users find an expert that meets their needs, they can seamlessly book appointments through a streamlined scheduling interface. Users receive confirmations and reminders for their appointments, enhancing the overall experience.
+A user-friendly scheduling system that allows entrepreneurs to book sessions with experts directly on the platform. With automated reminders and easy rescheduling options, this feature ensures appointments are convenient and well-organized.
 ![Appointment booking](https://www.ayyyub.com/projects/mentorlib/appointment-booking-feature-min.jpg)
+
+## Database Schema
+
+The Mentorlib schema is designed to facilitate a marketplace platform connecting clients with experts. Key components include:
+![Database schema](http://localhost:3000/projects/mentorlib/mentorlib-schema.svg)
+
+- **User**: The core model that differentiates clients and experts via the `UserRole` enum. It includes fields such as `email`, `password`, and `image`, ensuring secure authentication and user personalization.
+
+- **ExpertProfile**: This model captures expert details including `name`, `url`, `bio`, and `status`. The status field utilizes a `Status` enum to manage profile visibility, while the model establishes relationships with `Service` offerings and `UserWorkingHours`.
+
+- **Service**: Represents various services offered by experts, detailing `serviceType`, `title`, `price`, and `duration`. This model links to `ExpertProfile`, enabling dynamic service management based on expert availability.
+
+- **Scheduling**: Facilitates appointment bookings by capturing details such as `date`, `email`, and `note`. It creates relationships with both `User` and `ExpertProfile`, ensuring an organized scheduling process.
+
+- **UserWorkingHours**: Defines expert availability, specifying working hours for each day of the week. This model enhances scheduling by providing real-time availability to clients.
+
+## Technologies Used
+
+- **Programming Languages**:
+
+  - **TypeScript**: A superset of JavaScript that adds static types for improved error detection and code quality.
+
+- **Frameworks and Libraries**:
+
+  - **Next.js**: A React framework for building server-side rendered applications.
+  - **React**: A JavaScript library for building user interfaces.
+  - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+  - **Prisma**: A modern database toolkit for TypeScript and Node.js, providing an ORM for database management.
+
+- **Authentication and Authorization**:
+
+  - **NextAuth.js**: Authentication for Next.js applications, supporting multiple providers.
+  - **@auth/prisma-adapter**: Prisma adapter for NextAuth.js, enabling seamless integration.
+
+- **State Management**:
+
+  - **Zustand**: A small, fast, and scalable state management solution for React applications.
+
+- **Form Management**:
+
+  - **React Hook Form**: A library for managing form state and validation efficiently.
+
+- **Utilities**:
+
+  - **Date-fns** and **Day.js**: Libraries for manipulating and formatting dates and times.
+  - **Axios**: A promise-based HTTP client for making HTTP requests.
+
+- **Image Handling**:
+
+  - **Browser Image Compression**: A library for compressing images directly in the browser.
+
+- **Animation**:
+
+  - **Framer Motion**: A library for creating animations in React applications.
+
+- **Other Tools**:
+  - **Dotenv**: A module for loading environment variables from a `.env` file.
+  - **Class Variance Authority**: A utility for managing class names and variants in a consistent manner.
+
+## Challenges Faced
+
+### Challenge
+
+**Availability Times Data Storage**: Storing availability times in a way that accommodates various time zones can be complex. To ensure consistency and ease of comparison, it is crucial to convert all time inputs into a universal format. The solution involves converting local times into seconds since a defined start time (12:00 AM) to store in the database.
+
+### Solution
+
+Convert the user-provided availability times into seconds since 12:00 AM (midnight) using UTC, allowing for consistent storage and easy calculations. This approach simplifies comparisons and adjustments based on different time zones.
+
+### Code Snippet
+
+Here’s a relevant code snippet demonstrating how to convert time into seconds since midnight for storage:
+
+```typescript
+import moment from "moment-timezone";
+
+/**
+ * Convert time in minutes since midnight to UTC
+ * @param {number} minutes - Time in minutes since midnight
+ * @param {string} timezone - User's timezone
+ * @returns {number} - Time in minutes since midnight UTC
+ */
+const convertToUTC = (minutes, timezone) => {
+  const time = convertMinutesToTime(minutes);
+  const localTime = moment.tz(`1970-01-01 ${time}`, timezone);
+  const utcTime = localTime.utc();
+  return utcTime.hours() * 60 + utcTime.minutes();
+};
+
+/**
+ * Convert minutes since midnight to a formatted time string
+ * @param {number} minutes - Time in minutes since midnight
+ * @returns {string} - Formatted time string (HH:mm)
+ */
+const convertMinutesToTime = (minutes) => {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours.toString().padStart(2, "0")}:${mins
+    .toString()
+    .padStart(2, "0")}`;
+};
+
+/**
+ * Convert time string (HH:mm) to minutes since midnight
+ * @param {string} time - Time string in HH:mm format
+ * @returns {number} - Time in minutes since midnight
+ */
+const convertTimeToMinutes = (time) => {
+  const [hoursStr, minutesStr] = time.split(":");
+  const hours = Number(hoursStr);
+  const minutes = Number(minutesStr);
+  return hours * 60 + minutes;
+};
+```
 
 ### Links and Resources
 
