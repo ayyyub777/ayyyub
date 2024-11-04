@@ -53,7 +53,38 @@ export const Project = defineDocumentType(() => ({
   computedFields,
 }));
 
+export const SideProject = defineDocumentType(() => ({
+  name: "SideProject",
+  filePathPattern: `side-projects/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+    },
+    thumbnail: {
+      type: "string",
+      required: true,
+    },
+    tech: {
+      type: "list",
+      of: { type: "string" },
+      required: true,
+    },
+    demo: {
+      type: "string",
+    },
+    source_code: {
+      type: "string",
+    },
+  },
+  computedFields,
+}));
+
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Project, Page],
+  documentTypes: [Project, Page, SideProject],
 });
