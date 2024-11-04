@@ -22,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`antialiased mx-8 md:mx-0 min-h-screen bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-50 ${inter.className}`}
+        className={`antialiased mx-4 md:mx-0 min-h-screen bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="max-w-2xl mx-auto py-10 px-4">

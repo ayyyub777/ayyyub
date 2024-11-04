@@ -8,7 +8,7 @@ import { skillset } from "@/content/skillset";
 
 export default function Home() {
   return (
-    <div className="prose dark:prose-invert flex flex-col gap-10">
+    <div className="prose dark:prose-invert flex flex-col gap-12">
       <section className="flex flex-col-reverse gap-6 sm:flex-row sm:justify-between sm:items-start sm:text-left">
         <div>
           <h1 className="mb-2">Ayoub Bigharassine</h1>
@@ -26,7 +26,6 @@ export default function Home() {
           className="rounded-full mt-0 mb-2 w-20 h-20 sm:m-0 sm:w-[180px] sm:h-[180px]"
         />
       </section>
-      <hr className="m-0 sm:hidden" />
       <section>
         <h2 className="my-4">My Skillset</h2>
         <p className="mb-3">
@@ -49,114 +48,119 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="flex flex-col gap-4">
-        <h2 className="mb-2 mt-4">Featured Projects</h2>
-        {allProjects.map((project) => (
-          <article
-            key={project._id}
-            className="flex flex-col gap-3 sm:flex-row sm:gap-6"
-          >
-            <div className="shrink-0">
-              <Image
-                src={project.thumbnail}
-                alt={`Screenshot of ${project.title} - ${project.description}`}
-                height={208}
-                width={320}
-                className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
-              />
-            </div>
-            <div>
-              <h3 className="mt-0 mb-1">
-                <Link
-                  href={project.slug}
-                  className="no-underline hover:underline font-semibold"
-                >
-                  {project.title}
-                </Link>
-              </h3>
-
-              <p className="mb-3 text-sm opacity-90">{project.description}</p>
+      <section>
+        <h2 className="my-6">Featured Projects</h2>
+        <div className="space-y-8 md:space-y-4">
+          {allProjects.map((project) => (
+            <article
+              key={project._id}
+              className="flex flex-col gap-3 sm:flex-row sm:gap-6"
+            >
+              <div className="shrink-0">
+                <Image
+                  src={project.thumbnail}
+                  alt={`Screenshot of ${project.title} - ${project.description}`}
+                  height={600}
+                  width={924}
+                  className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
+                />
+              </div>
               <div>
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-block bg-neutral-100 text-neutral-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-neutral-700 dark:text-neutral-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-3">
-                <Link
-                  href={project.slug}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex gap-2 items-center opacity-80 hover:opacity-100"
-                >
-                  View Project
-                </Link>
-              </div>
-            </div>
-          </article>
-        ))}
-      </section>
-      <section className="flex flex-col gap-4">
-        <h2 className="mb-2 mt-4">Side Projects</h2>
-        {allSideProjects.map((project) => (
-          <article
-            key={project._id}
-            className="flex flex-col gap-3 sm:flex-row sm:gap-6"
-          >
-            <div className="shrink-0">
-              <Image
-                src={project.thumbnail}
-                alt={`Screenshot of ${project.title} - ${project.description}`}
-                height={600}
-                width={924}
-                className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
-              />
-            </div>
-            <div>
-              <h3 className="mt-0 mb-1 font-semibold">{project.title}</h3>
-
-              <p className="mb-3 text-sm opacity-90">{project.description}</p>
-              <div>
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-block bg-neutral-100 text-neutral-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-neutral-700 dark:text-neutral-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex mt-3 gap-5">
-                {project?.demo && (
+                <h3 className="mt-0 mb-1">
                   <Link
-                    href={project.demo}
+                    href={project.slug}
+                    className="no-underline hover:underline font-semibold"
+                  >
+                    {project.title}
+                  </Link>
+                </h3>
+
+                <p className="mb-3 text-sm opacity-90">{project.description}</p>
+                <div>
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-block bg-neutral-100 text-neutral-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-neutral-700 dark:text-neutral-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-3">
+                  <Link
+                    href={project.slug}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex gap-2 items-center opacity-80 hover:opacity-100"
                   >
                     <Icons.demo className="h-4 w-4" />
-                    Demo
+                    View Project
                   </Link>
-                )}
-                {project?.source_code && (
-                  <Link
-                    href={project.source_code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex gap-2 items-center opacity-80 hover:opacity-100"
-                  >
-                    <Icons.code className="h-4 w-4" />
-                    Source Code
-                  </Link>
-                )}
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2 className="my-6">Side Projects</h2>
+        <div className="space-y-8 md:space-y-4">
+          {allSideProjects.map((project) => (
+            <article
+              key={project._id}
+              className="flex flex-col gap-3 sm:flex-row sm:gap-6"
+            >
+              <div className="shrink-0">
+                <Image
+                  src={project.thumbnail}
+                  alt={`Screenshot of ${project.title} - ${project.description}`}
+                  height={600}
+                  width={924}
+                  className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
+                />
+              </div>
+              <div>
+                <h3 className="mt-0 mb-1 font-semibold">{project.title}</h3>
+
+                <p className="mb-3 text-sm opacity-90">{project.description}</p>
+                <div>
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-block bg-neutral-100 text-neutral-900 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-neutral-700 dark:text-neutral-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex mt-3 gap-5">
+                  {project?.demo && (
+                    <Link
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex gap-2 items-center opacity-80 hover:opacity-100"
+                    >
+                      <Icons.demo className="h-4 w-4" />
+                      Demo
+                    </Link>
+                  )}
+                  {project?.source_code && (
+                    <Link
+                      href={project.source_code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex gap-2 items-center opacity-80 hover:opacity-100"
+                    >
+                      <Icons.code className="h-4 w-4" />
+                      Source Code
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
       <section>
         <h2 className="my-4">Say, Hello!</h2>
