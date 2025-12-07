@@ -1,30 +1,31 @@
 export const skillset = {
-  "Programming Languages": [
-    "C",
-    "Python",
-    "JavaScript",
+  "Core Technologies": [
     "TypeScript",
-    "PHP",
-    "Dart",
-    "SQL",
-  ],
-  Frontend: [
+    "JavaScript",
     "React",
     "Next.js",
-    "Flutter",
-    "React Native",
-    "Bootstrap",
+    "Node.js",
     "TailwindCSS",
-    "jQuery",
   ],
-  Backend: ["Node.js", "Express", "Laravel"],
-  Databases: ["MySQL", "PostgreSQL", "SQLite", "MongoDB", "Redis"],
-  "Development Tools": ["Git", "Docker", "Prisma", "Kubernetes", "Webpack"],
-  "Cloud Technologies": [
-    "Amazon Web Services",
+  "Backend & Database": [
+    "Prisma",
+    "PostgreSQL",
+    "MySQL",
+    "Redis",
+    "Express",
+    "Laravel",
+  ],
+  "Cloud & DevOps": [
+    "AWS",
     "Google Cloud Platform",
-    "Firebase",
+    "Docker",
+    "Git",
+    "Vercel",
   ],
-  "APIs and Web Services": ["REST", "WebSockets"],
-  "Currently Learning": ["Django", "GraphQL", "Microservices Architecture"],
+  "Mobile & Other": [
+    "React Native",
+    "Flutter",
+    "REST APIs",
+    "WebSockets",
+  ],
 };

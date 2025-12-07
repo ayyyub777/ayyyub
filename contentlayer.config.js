@@ -49,6 +49,12 @@ export const Project = defineDocumentType(() => ({
       of: { type: "string" },
       required: true,
     },
+    demo: {
+      type: "string",
+    },
+    source_code: {
+      type: "string",
+    },
   },
   computedFields,
 }));
@@ -84,7 +90,82 @@ export const SideProject = defineDocumentType(() => ({
   computedFields,
 }));
 
+export const Experience = defineDocumentType(() => ({
+  name: "Experience",
+  filePathPattern: `experience/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    company: {
+      type: "string",
+      required: true,
+    },
+    logo: {
+      type: "string",
+      required: true,
+    },
+    position: {
+      type: "string",
+      required: true,
+    },
+    startDate: {
+      type: "string",
+      required: true,
+    },
+    endDate: {
+      type: "string",
+    },
+    description: {
+      type: "string",
+      required: true,
+    },
+    highlights: {
+      type: "list",
+      of: { type: "string" },
+    },
+    order: {
+      type: "number",
+      required: true,
+    },
+  },
+  computedFields,
+}));
+
+export const Education = defineDocumentType(() => ({
+  name: "Education",
+  filePathPattern: `education/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    institution: {
+      type: "string",
+      required: true,
+    },
+    degree: {
+      type: "string",
+      required: true,
+    },
+    field: {
+      type: "string",
+      required: false,
+    },
+    startDate: {
+      type: "string",
+      required: true,
+    },
+    endDate: {
+      type: "string",
+    },
+    description: {
+      type: "string",
+    },
+    order: {
+      type: "number",
+      required: true,
+    },
+  },
+  computedFields,
+}));
+
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Project, Page, SideProject],
+  documentTypes: [Project, Page, SideProject, Experience, Education],
 });

@@ -1,5 +1,7 @@
 import { allProjects } from "@/.contentlayer/generated";
 import { allSideProjects } from "@/.contentlayer/generated";
+import { allExperiences } from "@/.contentlayer/generated";
+import { allEducation } from "@/.contentlayer/generated";
 
 import { Icons } from "@/components/icons";
 import Image from "next/image";
@@ -7,15 +9,19 @@ import Link from "next/link";
 import { skillset } from "@/content/skillset";
 
 export default function Home() {
+  const experiences = allExperiences.sort((a, b) => a.order - b.order);
+  const education = allEducation.sort((a, b) => a.order - b.order);
+  
   return (
     <div className="prose dark:prose-invert flex flex-col gap-12">
       <section className="flex flex-col-reverse gap-6 sm:flex-row sm:justify-between sm:items-start sm:text-left">
         <div>
           <h1 className="mb-2">Ayoub Bigharassine</h1>
-          <p className="text-xl opacity-90 m-0">Software Developer</p>
+          <p className="text-xl opacity-90 m-0">Full-Stack Developer</p>
           <p className="mt-4">
-            Specializing in building full-stack web applications, turning
-            concepts into functional and user-friendly digital experiences.
+            I build production-ready web applications with modern technologies.
+            From marketplace platforms to SaaS tools, I focus on clean code,
+            scalable architecture, and exceptional user experiences.
           </p>
         </div>
         <Image
@@ -27,10 +33,9 @@ export default function Home() {
         />
       </section>
       <section>
-        <h2 className="my-4">My Skillset</h2>
+        <h2 className="my-4">Core Competencies</h2>
         <p className="mb-3">
-          In the course of my software development journey, I&apos;ve acquired a
-          robust set of technical skills. These include
+          Technologies and tools I use to build modern web applications:
         </p>
         <div>
           {Object.entries(skillset).map(([category, technologies]) => (
@@ -103,6 +108,43 @@ export default function Home() {
         </div>
       </section>
       <section>
+        <h2 className="my-6">Experience</h2>
+        <div className="space-y-6">
+          {experiences.map((exp) => (
+            <article key={exp._id} className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+              <div className="shrink-0">
+                <Image
+                  src={exp.logo}
+                  alt={`${exp.company} logo`}
+                  height={56}
+                  width={56}
+                  className="object-contain size-14 m-0 rounded-lg"
+                />
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-2">
+                  <div>
+                    <h3 className="mt-0 mb-0 font-semibold">{exp.position}</h3>
+                    <p className="text-base opacity-90 m-0">{exp.company}</p>
+                  </div>
+                  <p className="text-sm opacity-70 m-0">
+                    {exp.startDate} - {exp.endDate || "Present"}
+                  </p>
+                </div>
+                <p className="text-sm opacity-90 mb-2">{exp.description}</p>
+                {exp.highlights && exp.highlights.length > 0 && (
+                  <ul className="text-sm space-y-1 mb-0">
+                    {exp.highlights.map((highlight, index) => (
+                      <li key={index} className="opacity-80">{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+            <section>
         <h2 className="my-6">Side Projects</h2>
         <div className="space-y-8 md:space-y-4">
           {allSideProjects.map((project) => (
@@ -158,6 +200,29 @@ export default function Home() {
                   )}
                 </div>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2 className="my-6">Education</h2>
+        <div className="space-y-6">
+          {education.map((edu) => (
+            <article key={edu._id} className="flex flex-col gap-2">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                <div>
+                  <h3 className="mt-0 mb-0 font-semibold">
+                    {edu.degree} {edu.field && `in ${edu.field}`}
+                  </h3>
+                  <p className="text-base opacity-90 m-0">{edu.institution}</p>
+                </div>
+                <p className="text-sm opacity-70 m-0">
+                  {edu.startDate} - {edu.endDate || "Present"}
+                </p>
+              </div>
+              {edu.description && (
+                <p className="text-sm opacity-80 m-0">{edu.description}</p>
+              )}
             </article>
           ))}
         </div>

@@ -1,6 +1,6 @@
 ---
 title: Expert Review Marketplace
-description: A marketplace platform that connects clients with industry experts, featuring integrated appointment booking for organization.
+description: A marketplace platform connecting clients with industry experts for business reviews, featuring integrated scheduling and payment processing.
 thumbnail: "/projects/mentorlib/mentorlib-logo-min.jpg"
 tech:
   - TypeScript
@@ -8,38 +8,52 @@ tech:
   - Next.js
   - TailwindCSS
   - Prisma
+source_code: https://github.com/ayyyub777/mentorlib
 ---
 
 # Project Overview
 
-Mentorlib is an innovative platform designed to connect entrepreneurs with industry experts for insightful reviews of business deliverables, such as pitch decks, marketing strategies, and business plans. The platform aims to streamline the process of seeking expert advice, making it accessible and efficient for startups and entrepreneurs.
+## The Problem
+
+Entrepreneurs and startups often struggle to get expert feedback on critical business deliverables like pitch decks, marketing strategies, and business plans. Traditional consulting is expensive and time-consuming, creating a barrier for early-stage founders who need quick, affordable access to industry expertise.
+
+## The Solution
+
+Mentorlib is a marketplace platform that democratizes access to expert advice by connecting entrepreneurs with industry professionals. The platform streamlines the entire process from discovery to payment, making expert consultations accessible and efficient.
+
+## Key Impact
+
+- **Simplified Booking**: Automated scheduling system reduced booking time from days to minutes
+- **Expert Management**: Comprehensive availability system allowing experts to manage their time effectively
+- **User Experience**: Intuitive interface with role-based onboarding for both clients and experts
+- **Scalable Architecture**: Built with modern tech stack to handle growing user base
 
 ## Key Features
 
 ### 1. Onboarding with Role Selection
 
 A tailored onboarding experience that allows new users to select their role as either an entrepreneur or an expert. This personalized start ensures each user is guided to the features and services most relevant to their needs, maximizing the value of Mentorlib from the first login.
-![Onboarding](https://www.ayyyub.com/projects/mentorlib/onboarding-feature-min.jpg)
+![Onboarding](/projects/mentorlib/onboarding-feature-min.jpg)
 
 ### 2. Browsing Experts and Services
 
 Enables users to explore a curated directory of experts and available services, each with detailed profiles and service descriptions. This feature allows entrepreneurs to find the perfect match for their specific business needs, from pitch deck reviews to marketing strategy consultations.
-![Browsing](https://www.ayyyub.com/projects/mentorlib/browsing-feature-min.jpg)
+![Browsing](/projects/mentorlib/browsing-feature-min.jpg)
 
 ### 3. Availability Management
 
 Provides experts with tools to set their availability, making it easy for entrepreneurs to view open slots and book sessions. This feature streamlines the scheduling process, helping both parties efficiently find convenient times for consultations.
-![Availability](https://www.ayyyub.com/projects/mentorlib/availability-feature-min.jpg)
+![Availability](/projects/mentorlib/availability-feature-min.jpg)
 
 ### 4. Appointment Scheduling
 
 A user-friendly scheduling system that allows entrepreneurs to book sessions with experts directly on the platform. With automated reminders and easy rescheduling options, this feature ensures appointments are convenient and well-organized.
-![Appointment booking](https://www.ayyyub.com/projects/mentorlib/appointment-booking-feature-min.jpg)
+![Appointment booking](/projects/mentorlib/appointment-booking-feature-min.jpg)
 
 ## Database Schema
 
 The Mentorlib schema is designed to facilitate a marketplace platform connecting clients with experts. Key components include:
-![Database schema](https://www.ayyyub.com/projects/mentorlib/mentorlib-schema.svg)
+![Database schema](/projects/mentorlib/mentorlib-schema.svg)
 
 - **User**: The core model that differentiates clients and experts via the `UserRole` enum. It includes fields such as `email`, `password`, and `image`, ensuring secure authentication and user personalization.
 
@@ -149,9 +163,3 @@ const convertTimeToMinutes = (time) => {
   return hours * 60 + minutes;
 };
 ```
-
-### Links and Resources
-
-<a href="https://mentorlib.com" target="_blank" rel="noopener noreferrer">
-  Live Demo
-</a>

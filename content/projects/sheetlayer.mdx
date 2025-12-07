@@ -1,6 +1,6 @@
 ---
-title: Restful API solution
-description: A SaaS tool that integrates with Google Sheets for API generation, with built-in billing for subscription handling.
+title: Restful API Solution
+description: A SaaS platform that transforms Google Sheets into RESTful APIs with built-in authentication, API management, and subscription billing.
 thumbnail: "/projects/sheetlayer/sheetlayer-logo-min.jpg"
 tech:
   - React
@@ -10,38 +10,54 @@ tech:
   - TailwindCSS
   - Prisma
   - AWS
+source_code: https://github.com/ayyyub777/sheetlayer
 ---
 
 # Project Overview
 
-SheetLayer is a versatile tool that allows users to create APIs directly from spreadsheet data, enabling the rapid development of internal tools, prototypes, websites, and more. By transforming structured data into RESTful APIs, SheetLayer empowers developers and businesses to leverage their existing datasets in dynamic and innovative ways.
+## The Problem
+
+Developers and businesses frequently need to quickly create APIs for prototypes, internal tools, or MVPs. Building custom backends is time-consuming and often overkill for simple data-driven applications. Meanwhile, valuable data sits in spreadsheets without an easy way to programmatically access it.
+
+## The Solution
+
+SheetLayer bridges this gap by transforming Google Sheets into production-ready RESTful APIs in seconds. Users can leverage their existing spreadsheet data without writing backend code, dramatically reducing development time and technical complexity.
+
+## Key Impact
+
+- **Speed to Market**: Reduced API development time from hours to minutes
+- **Integration**: Seamless Google Sheets integration with real-time data synchronization
+- **Security**: Magic link authentication and API key management for secure access
+- **Monetization**: Full subscription and billing management with LemonSqueezy integration
+- **Performance**: Redis caching for fast API responses at scale
+- **Developer Experience**: Clean API documentation and usage analytics
 
 ## Key Features
 
 ### 1. Secure Authentication
 
 Simplifies user access by enabling secure, password-free login through unique, time-sensitive links sent to users' email. This feature enhances user experience and security, making it easy for teams to quickly start building APIs from their spreadsheet data.
-![Magic Link Authentication](https://www.ayyyub.com/projects/sheetlayer/auth-min.jpg)
+![Magic Link Authentication](/projects/sheetlayer/auth-min.jpg)
 
 ### 2. Google Sheets Integration
 
 Seamlessly connects with Google Sheets to allow users to turn their existing spreadsheet data into accessible APIs in real time. This integration makes it effortles
-s to manage and update datasets without leaving the familiar Google Sheets interface.![Google Sheets Integration](https://www.ayyyub.com/projects/sheetlayer/sheets-integration-min.jpg)
+s to manage and update datasets without leaving the familiar Google Sheets interface.![Google Sheets Integration](/projects/sheetlayer/sheets-integration-min.jpg)
 
 ### 3. API Management
 
 Provides tools to monitor, control, and secure all APIs created with SheetLayer. Users can view API usage statistics, set access controls, and make adjustments, enabling effective scaling and management of data-driven applications.
-![API Management](https://www.ayyyub.com/projects/sheetlayer/main-feature-min.jpg)
+![API Management](/projects/sheetlayer/main-feature-min.jpg)
 
 ### 4. Billing Management
 
 A user-friendly interface for managing subscription plans, viewing invoices, and tracking payment history. This feature helps users easily stay on top of their account, ensuring uninterrupted access to SheetLayer’s full suite of tools.
-![Billing Management](https://www.ayyyub.com/projects/sheetlayer/billing-feature-min.jpg)
+![Billing Management](/projects/sheetlayer/billing-feature-min.jpg)
 
 ## Database Schema
 
 The SheetLayer schema supports a SaaS tool that integrates with Google Sheets to manage data and APIs. Its main components include:
-![Database schema](https://www.ayyyub.com/projects/sheetlayer/sheetlayer-schema.svg)
+![Database schema](/projects/sheetlayer/sheetlayer-schema.svg)
 
 - **User**: Central to the application, this model manages user accounts with essential fields such as `email`, `picture`, and timestamps for account lifecycle management. The relationship with `Session` ensures secure session handling and authentication.
 
@@ -173,9 +189,3 @@ export const rateLimiter = async (key) => {
 
 export default redis;
 ```
-
-### Links and Resources
-
-<a href="https://sheetlayer.com" target="_blank" rel="noopener noreferrer">
-  Live Demo
-</a>
