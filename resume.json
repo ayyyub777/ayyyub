@@ -1,0 +1,160 @@
+{
+  "personalInfo": {
+    "name": "Ayoub Bigharassine",
+    "title": "Full-Stack Developer",
+    "email": "ayoub.bigharassine@gmail.com",
+    "phone": "+212 (6) XXXXXXXXX",
+    "location": "Agadir, Morocco",
+    "website": "ayyyub.dev",
+    "linkedin": "linkedin.com/in/ayoub-bigharassine",
+    "github": "github.com/ayyyub777",
+    "image": "/pic.jpeg",
+    "summary": "Full-stack developer with expertise in building production-ready web applications and SaaS platforms. Specialized in React, Next.js, TypeScript, and Node.js. Experienced in designing user-centered interfaces through research and usability testing, developing scalable solutions, and deploying cloud-based applications. Passionate about clean code, design patterns, and delivering high-impact products."
+  },
+  "experience": [
+    {
+      "company": "MintHR",
+      "position": "Mobile Developer",
+      "startDate": "Dec 2024",
+      "endDate": "Present",
+      "description": "Developing cross-platform mobile applications for a human resource management software platform using React Native.",
+      "highlights": [
+        "Building cross-platform mobile solutions for employee onboarding and HR processes",
+        "Implementing features for payroll processing and performance tracking",
+        "Collaborating with the team to enhance organizational efficiency through mobile technology",
+        "Developing user-friendly interfaces for compliance management features"
+      ]
+    },
+    {
+      "company": "Schoolify",
+      "position": "Mobile Developer Intern",
+      "startDate": "Oct 2024",
+      "endDate": "Nov 2024",
+      "description": "Internship focused on mobile development for a comprehensive learning management system using Flutter and Laravel.",
+      "highlights": [
+        "Developed mobile features for attendance tracking and grade management",
+        "Worked with Flutter for cross-platform mobile development",
+        "Integrated Laravel backend APIs for real-time communication features",
+        "Contributed to tools supporting schools, teachers, students, and parents"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "ALX",
+      "degree": "Professional Training",
+      "field": "Software Engineering",
+      "startDate": "Mar 2023",
+      "endDate": "Oct 2024",
+      "description": "Africa-focused tech training program providing hands-on education in software engineering through online cohorts and partnerships, emphasizing practical skills and job placement."
+    },
+    {
+      "institution": "Ibn Zohr University",
+      "degree": "Studies in Chemistry",
+      "startDate": "Sep 2020",
+      "endDate": "Mar 2023",
+      "description": "Studied chemistry before transitioning to tech career."
+    }
+  ],
+  "skills": {
+    "technical": [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "React Native",
+      "Next.js",
+      "Node.js",
+      "Express",
+      "TailwindCSS",
+      "Prisma",
+      "PostgreSQL",
+      "MySQL",
+      "Redis",
+      "Flutter",
+      "PHP",
+      "Laravel",
+      "Docker",
+      "AWS",
+      "Google Cloud Platform",
+      "Vercel"
+    ],
+    "languages": [
+      "English (Fluent)",
+      "French (Fluent)",
+      "Arabic (Native)"
+    ],
+    "other": [
+      "REST APIs",
+      "WebSockets",
+      "Git & Version Control",
+      "Responsive Design",
+      "UI/UX Design",
+      "Agile Development",
+      "System Architecture",
+      "Code Optimization"
+    ]
+  },
+  "projects": [
+    {
+      "name": "Expert Review Marketplace (Mentorlib)",
+      "description": "A marketplace platform connecting clients with industry experts for business reviews, featuring integrated scheduling and payment processing. Automated scheduling system reduced booking time from days to minutes.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS",
+        "Prisma",
+        "PostgreSQL",
+        "NextAuth.js",
+        "Zustand",
+        "React Hook Form",
+        "Framer Motion"
+      ],
+      "link": "github.com/ayyyub777/mentorlib"
+    },
+    {
+      "name": "Restful API Solution (SheetLayer)",
+      "description": "A SaaS platform that transforms Google Sheets into RESTful APIs with built-in authentication, API management, and subscription billing. Reduced API development time from hours to minutes.",
+      "technologies": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Redis",
+        "TailwindCSS",
+        "Prisma",
+        "AWS",
+        "LemonSqueezy",
+        "Google APIs",
+        "Nodemailer"
+      ],
+      "link": "github.com/ayyyub777/sheetlayer"
+    },
+    {
+      "name": "Store CMS",
+      "description": "A headless content management system for e-commerce stores, providing API-driven product, category, and inventory management with modern admin interface.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "TailwindCSS",
+        "Prisma",
+        "PostgreSQL"
+      ],
+      "link": "github.com/ayyyub777/store-cms"
+    },
+    {
+      "name": "Issue Tracking System",
+      "description": "A comprehensive issue tracking platform built with Laravel and React, enabling teams to report, prioritize, and resolve issues efficiently with role-based access control.",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "TypeScript",
+        "React",
+        "TailwindCSS",
+        "Docker",
+        "MySQL"
+      ],
+      "link": "github.com/ayyyub777/issue-tracking-system"
+    }
+  ]
+}

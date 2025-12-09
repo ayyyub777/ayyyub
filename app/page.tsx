@@ -152,7 +152,7 @@ export default function Home() {
               key={project._id}
               className="flex flex-col gap-3 sm:flex-row sm:gap-6"
             >
-              <div className="shrink-0">
+              {/* <div className="shrink-0">
                 <Image
                   src={project.thumbnail}
                   alt={`Screenshot of ${project.title} - ${project.description}`}
@@ -160,7 +160,7 @@ export default function Home() {
                   width={924}
                   className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
                 />
-              </div>
+              </div> */}
               <div>
                 <h3 className="mt-0 mb-1 font-semibold">{project.title}</h3>
 
@@ -204,7 +204,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section>
+      {/* <section>
         <h2 className="my-6">Education</h2>
         <div className="space-y-6">
           {education.map((edu) => (
@@ -226,7 +226,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
       <section>
         <h2 className="my-4">Say, Hello!</h2>
         <div className="flex flex-col sm:flex-row sm:flex-wrap sm:gap-x-3">
