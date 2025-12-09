@@ -112,7 +112,7 @@ export default function Home() {
         <div className="space-y-6">
           {experiences.map((exp) => (
             <article key={exp._id} className="flex flex-col gap-4 sm:flex-row sm:gap-6">
-              <div className="shrink-0">
+              {/* <div className="shrink-0">
                 <Image
                   src={exp.logo}
                   alt={`${exp.company} logo`}
@@ -120,7 +120,7 @@ export default function Home() {
                   width={56}
                   className="object-contain size-14 m-0 rounded-lg"
                 />
-              </div>
+              </div> */}
               <div className="flex-1">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-2">
                   <div>
@@ -152,7 +152,7 @@ export default function Home() {
               key={project._id}
               className="flex flex-col gap-3 sm:flex-row sm:gap-6"
             >
-              {/* <div className="shrink-0">
+              <div className="shrink-0">
                 <Image
                   src={project.thumbnail}
                   alt={`Screenshot of ${project.title} - ${project.description}`}
@@ -160,7 +160,7 @@ export default function Home() {
                   width={924}
                   className="object-cover h-auto w-full m-0 sm:h-52 sm:w-80"
                 />
-              </div> */}
+              </div>
               <div>
                 <h3 className="mt-0 mb-1 font-semibold">{project.title}</h3>
 
